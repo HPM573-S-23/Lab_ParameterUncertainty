@@ -7,7 +7,8 @@ from ParameterClasses import *  # import everything from the ParameterClass modu
 
 
 class Parameters:
-
+    """ class to include parameter information to simulate the model """
+    
     def __init__(self, therapy):
 
         self.therapy = therapy              # selected therapy
@@ -20,7 +21,8 @@ class Parameters:
 
 
 class ParameterGenerator:
-
+    """ class to generate parameter values from the selected probability distributions """
+    
     def __init__(self, therapy):
 
         self.therapy = therapy
