@@ -9,16 +9,16 @@ class MultiCohort:
     """ simulates multiple cohorts with different parameters """
 
     def __init__(self, ids, pop_size, therapy):
-    """
-    :param ids: (list) of ids for cohorts to simulate
-    :param pop_size: (int) population size of cohorts to simulate
-    :param therapy: selected therapy
-    """
-    self.ids = ids
-    self.popSize = pop_size
-    self.therapy = therapy
-    self.paramSets = []  # list of parameter sets each of which corresponds to a cohort
-    self.multiCohortOutcomes = MultiCohortOutcomes()
+        """
+        :param ids: (list) of ids for cohorts to simulate
+        :param pop_size: (int) population size of cohorts to simulate
+        :param therapy: selected therapy
+        """
+        self.ids = ids
+        self.popSize = pop_size
+        self.therapy = therapy
+        self.paramSets = []  # list of parameter sets each of which corresponds to a cohort
+        self.multiCohortOutcomes = MultiCohortOutcomes()
 
     def __populate_parameter_sets(self):
 
