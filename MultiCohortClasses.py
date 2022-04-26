@@ -9,31 +9,36 @@ class MultiCohort:
     """ simulates multiple cohorts with different parameters """
 
     def __init__(self, ids, pop_size, therapy):
-        """
-        :param ids: (list) of ids for cohorts to simulate
-        :param pop_size: (int) population size of cohorts to simulate
-        :param therapy: selected therapy
-        """
-        self.ids = ids
-        self.popSize = pop_size
-        self.paramSets = []  # list of parameter sets each of which corresponds to a cohort
-        self.multiCohortOutcomes = MultiCohortOutcomes()
+    """
+    :param ids: (list) of ids for cohorts to simulate
+    :param pop_size: (int) population size of cohorts to simulate
+    :param therapy: selected therapy
+    """
+    self.ids = ids
+    self.popSize = pop_size
+    self.therapy = therapy
+    self.paramSets = []  # list of parameter sets each of which corresponds to a cohort
+    self.multiCohortOutcomes = MultiCohortOutcomes()
 
-        # create parameter sets
-        self.__populate_parameter_sets(therapy=therapy)
-
-    def __populate_parameter_sets(self, therapy):
+    def __populate_parameter_sets(self):
 
         # create a parameter set generator
-        param_generator = ParameterGenerator(therapy=therapy)
+        param_generator = ParameterGenerator(therapy=self.therapy)
 
         # create as many sets of parameters as the number of cohorts
-
+        for i in range(len(self.ids)):
+            # create a new random number generator for each parameter set
+            rng = np.random.RandomState(seed=i)
+            # get and store a new set of parameter
+            self.paramSets.append(param_generator.get_new_parameters(rng=rng))
 
     def simulate(self, sim_length):
         """ simulates all cohorts
         :param sim_length: simulation length
         """
+
+        # create parameter sets
+        self.__populate_parameter_sets()
 
         for i in range(len(self.ids)):
             # create a cohort
